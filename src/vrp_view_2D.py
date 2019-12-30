@@ -2,6 +2,7 @@ import numpy as np
 import pygame
 import datetime
 import os
+import logging
 
 class VRPView2D:
     def __init__(self, n_restaurants, n_orders, map_quad, grid_size):
@@ -29,6 +30,9 @@ class VRPView2D:
         # Create a layer for the game
         self.game_surface = pygame.Surface(self.screen.get_size()).convert_alpha()
         self.game_surface.fill((0, 0, 0, 0,))
+
+        self.logger = logging.getLogger(__name__)
+        self.logger.info("Started trainning")
 
     def update(self, res_x, res_y, o_status, o_x, o_y, dr_x, dr_y, o_res_map, mode="human"):
         try:
