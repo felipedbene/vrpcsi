@@ -53,7 +53,7 @@ class VRPView2D:
             pygame.quit()
             raise e
         else:
-            pygame.image.save(self.screen,"/opt/ml/output/render-{}.jpeg".format(datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S-%f")) )
+            pygame.image.save(self.screen,"/opt/ml/model/render-{}.jpg".format(datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S-%f")) )
             return img
 
     def __handle_pygame_events(self):
