@@ -1,6 +1,6 @@
 import numpy as np
 import pygame
-
+import datetime
 
 class VRPView2D:
     def __init__(self, n_restaurants, n_orders, map_quad, grid_size):
@@ -17,7 +17,7 @@ class VRPView2D:
         self.map_max_y = + map_quad[1]
 
         pygame.init()
-        pygame.display.set_caption("VRP")
+        pygame.display.set_caption("Routing")
 
         self.screen = pygame.display.set_mode(self.__get_window_size())
 
@@ -53,6 +53,7 @@ class VRPView2D:
             pygame.quit()
             raise e
         else:
+            pygame.image.save(self.screen,"render-{}.jpeg".format(datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S-%f")) )
             return img
 
     def __handle_pygame_events(self):
@@ -110,7 +111,7 @@ class VRPView2D:
         # Restaurant
         rx, ry = self.__locate_on_window(self.map_max_x + 2, self.map_max_y - 2)
         pygame.draw.rect(self.game_surface, (0, 0, 255), (rx - 10, ry - 10, 20, 20))
-        self.screen.blit(self._create_text_surface("Restaurant"), (rx + 12, ry - 10))
+        self.screen.blit(self._create_text_surface("DistCenter"), (rx + 12, ry - 10))
 
         # Orders
         ox, oy = self.__locate_on_window(self.map_max_x + 2, self.map_max_y - 3)
@@ -129,7 +130,7 @@ class VRPView2D:
 
     @staticmethod
     def _create_text_surface(text, color=(238, 130, 238)):
-        font = pygame.font.SysFont("arial", 16)
+        font = pygame.font.SysFont("arial", 12)
         return font.render(text, True, color)
 
     @staticmethod
@@ -143,6 +144,8 @@ class VRPView2D:
 
 if __name__ == "__main__":
     vrp = VRPView2D(n_restaurants=2, n_orders=5, map_quad=(10, 10), grid_size=25)
+    
     vrp.update([0, 2], [0, 1], [1, 1, 0, 2, 2], [-2, -2, -1, 1, 2], [-2, -2, -1, 1, 2], 2, 0,
                {0: 1, 1: 1, 2: 1, 3: 1, 4: 0})
+
     input("Press any key to quit.")
