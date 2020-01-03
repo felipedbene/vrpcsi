@@ -4,6 +4,8 @@ import datetime
 import os
 import logging
 
+os.environ["SDL_VIDEODRIVER"] = "dummy"
+
 class VRPView2D:
     def __init__(self, n_restaurants, n_orders, map_quad, grid_size):
 
@@ -33,7 +35,7 @@ class VRPView2D:
 
         self.logger = logging.getLogger(__name__)
         self.logger.info("Started trainning")
-        os.environ["SDL_VIDEODRIVER"] = "dummy"
+
 
     def update(self, res_x, res_y, o_status, o_x, o_y, dr_x, dr_y, o_res_map, mode="human"):
         try:
