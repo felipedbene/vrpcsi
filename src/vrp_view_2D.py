@@ -53,7 +53,7 @@ class VRPView2D:
             img = np.flipud(np.rot90(pygame.surfarray.array3d(pygame.display.get_surface())))
 
             self.__handle_pygame_events()
-            pygame.image.sav(self.screen,"/opt/ml/output/data/render-{}".format(datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S-%f")) )
+            pygame.image.save(self.screen,"/opt/ml/output/data/render-{}".format(datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S-%f")) )
 
         except Exception as e:
             pygame.display.quit()
