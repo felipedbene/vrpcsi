@@ -4,7 +4,7 @@ import datetime
 import os
 import logging
 
-os.environ["SDL_VIDEODRIVER"] = "dummy"
+#os.environ["SDL_VIDEODRIVER"] = "dummy"
 
 class VRPView2D:
     def __init__(self, n_restaurants, n_orders, map_quad, grid_size):
@@ -56,15 +56,16 @@ class VRPView2D:
             img = np.flipud(np.rot90(pygame.surfarray.array3d(pygame.display.get_surface())))
 
             self.__handle_pygame_events()
-            pygame.image.save(self.screen,"/opt/ml/output/data/render-{}".format(datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S-%f")) )
+            saida_dir = os.path.join(os.environ['SM_OUTPUT_DATA_DIR'],"render-{}.jpg".format(datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S-%f") ))
+            print(saida_dir)
+            pygame.image.save(self.screen,saida_dir)
 
         except Exception as e:
             pygame.display.quit()
             pygame.quit()
             raise e
         else:
-            #saida_dir = os.path.join(os.environ['SM_OUTPUT_DATA_DIR'],"render-{}.jpg".format(datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S-%f") ))
-            #print(saida_dir)
+
             return img
 
     def __handle_pygame_events(self):

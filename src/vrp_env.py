@@ -206,6 +206,7 @@ class VRPGymEnvironment(gym.Env):
         return self.__reset_state()
 
     def step(self, action):
+        self.render()
         orig_obs, rew, done, info = self.__orig_step(action)
         self.__update_avail_actions()
         obs = {
