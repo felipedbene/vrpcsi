@@ -33,6 +33,7 @@ class VRPView2D:
 
         self.logger = logging.getLogger(__name__)
         self.logger.info("Started trainning")
+        os.environ["SDL_VIDEODRIVER"] = "dummy"
 
     def update(self, res_x, res_y, o_status, o_x, o_y, dr_x, dr_y, o_res_map, mode="human"):
         try:
