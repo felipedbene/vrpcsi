@@ -49,10 +49,10 @@ class VRPGymEnvironment(gym.Env):
     def __init__(self, env_config={}):
 
         self.vrp_view = None
-        config_defaults = {'n_restaurants': 2,
-                           'n_orders': 10,
+        config_defaults = {'n_restaurants': 3,
+                           'n_orders': 100,
                            'order_prob': 0.5,
-                           'driver_capacity': 4,
+                           'driver_capacity': 13,
                            'map_quad': (5, 5),
                            'order_promise': 60,
                            'order_timeout_prob': 0.15,

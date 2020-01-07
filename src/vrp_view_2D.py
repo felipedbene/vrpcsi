@@ -57,7 +57,7 @@ class VRPView2D:
 
             self.__handle_pygame_events()
             saida_dir = os.path.join(os.environ['SM_OUTPUT_DATA_DIR'],"render-{}.jpg".format(datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S-%f") ))
-            print(saida_dir)
+            #print(saida_dir)
             pygame.image.save(self.screen,saida_dir)
 
         except Exception as e:
